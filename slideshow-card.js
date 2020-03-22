@@ -236,7 +236,9 @@ class SlideshowCard extends Polymer.Element {
     }
     this.slideIndex++;
     if (this.slideIndex > slides.length) {this.slideIndex = 1}
-    slides[this.slideIndex-1].style.display = "block";
+	if(typeof slides[this.slideIndex-1] !== 'undefined' && typeof slides[this.slideIndex-1].style !== 'undefined'){
+		slides[this.slideIndex-1].style.display = "block";
+	}
   }
 
   _stopSlide(){
