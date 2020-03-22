@@ -36,10 +36,11 @@ class SlideshowCard extends Polymer.Element {
       this.shadowRoot.appendChild(card);
 
       if(hass.states[this.config.folder]) {
-        this.images = hass.states[this.config.folder].attributes.fileList;
-        hass.states[this.config.folder].attributes.fileList.forEach(item => {
+        this.images = hass.states[this.config.folder].attributes.file_list;
+        hass.states[this.config.folder].attributes.file_list.forEach(item => {
           const image = document.createElement('img');
-          var fileLocation = item.substring(11);
+		  var pathArray = item.split('/');
+          var fileLocation = "/" + pathArray[pathArray.length - 2] + "/" + pathArray[pathArray.length -1];
           image.setAttribute("src", "/local" + fileLocation);
           image.className = 'slides fade';
           image.style.setProperty("width", "100%");
@@ -56,7 +57,7 @@ class SlideshowCard extends Polymer.Element {
           item.hass = hass;
         });
       if(hass.states[this.config.folder]){
-        hass.states[this.config.folder].attributes.fileList.forEach(item => {
+        hass.states[this.config.folder].attributes.file_list.forEach(item => {
           if(!this.images.includes(item)){
             const image = document.createElement('img');
             var fileLocation = item.substring(11);
@@ -235,7 +236,9 @@ class SlideshowCard extends Polymer.Element {
     }
     this.slideIndex++;
     if (this.slideIndex > slides.length) {this.slideIndex = 1}
-    slides[this.slideIndex-1].style.display = "block";
+	if(typeof slides[this.slideIndex-1] !== 'undefined' && typeof slides[this.slideIndex-1].style !== 'undefined'){
+		slides[this.slideIndex-1].style.display = "block";
+	}
   }
 
   _stopSlide(){
