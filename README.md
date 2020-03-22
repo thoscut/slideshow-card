@@ -56,10 +56,10 @@ Any files you add to the folder should automatically get added to the slide show
 ## Installation
 
 1. Copy `slideshow-card.js` to `<config directory>/www/slideshow-card.js`
-2. Add `slideshow-card` as a resource in `ui-lovelace.yaml`
+2. Add this to your Lovelace
+   `resources:`
 
 ```yaml
-resources:
   - url: /local/slideshow-card.js
     type: js
 ```
