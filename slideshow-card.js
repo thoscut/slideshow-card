@@ -64,6 +64,7 @@ class SlideshowCard extends Polymer.Element {
             image.setAttribute("src", "/local" + fileLocation);
             image.className = 'slides fade';
             image.style.setProperty("width", "100%");
+            image.style.setProperty("max-height", "100%");
             for(var k in this.config.style) {
               image.style.setProperty(k, this.config.style[k]);
             }
